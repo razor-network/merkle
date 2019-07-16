@@ -17,12 +17,12 @@ var abcde = ['a', 'b', 'c', 'd', 'e'];
 #### Sync style
 
 ```js
-var tree = merkle('sha1').sync(abcde);
+var tree = merkle().sync(abcde);
 ```
 
 #### Async style
 ```js
-merkle('sha1').async(abcde, function(err, tree){
+merkle().async(abcde, function(err, tree){
   // ...
 });
 ```
@@ -30,12 +30,12 @@ merkle('sha1').async(abcde, function(err, tree){
 #### Stream style
 ```js
 // Stream style -- streams root hash
-var merkleStreamRoot = merkle('sha1');
+var merkleStreamRoot = merkle();
 merkleStreamRoot.pipe(process.stdout);
 
 // Stream style -- streams json tree
 var es = require('event-stream');
-var merkleStreamJson = merkle('sha1').json();
+var merkleStreamJson = merkle().json();
 merkleStreamJson
   .pipe(es.stringify())
   .pipe(process.stdout);
@@ -59,7 +59,7 @@ We've added an extra parameter to avoid this case alteration, so you can work ex
 
 ```
 var use_uppercase = false;
-merkle('sha256', use_uppercase);
+merkle('keccak256', use_uppercase);
 ```
 
 > We plan to remove this syntax for v1.0.0 and always use lowercase hashes.
@@ -115,33 +115,13 @@ Get a tree level nodes:
 ...
 ```
 
-### Using different hash algorithms
-
-```js
-var sha256tree= merkle('sha256').sync(abcde);
-var sha1tree  = merkle('sha1').sync(abcde);
-var md5tree   = merkle('md5').sync(abcde);
-var cleartree = merkle('none').sync(abcde);
-
-> sha256tree.root();
-'16E6BEB3E080910740A2923D6091618CAA9968AEAD8A52D187D725D199548E2C'
-
-> sha1tree.root();
-'114B6E61CB5BB93D862CA3C1DFA8B99E313E66E9'
-
-> md5tree.root();
-'064705BD78652C090975702C9E02E229'
-
-> cleartree.root();
-'ABCDE'
-```
 
 ### Install globally for merkle command
 
 Installing it globally will introduce the `merkle` command (using sha1 as default):
 
 ```bash
-$ sudo npm install -g merkle
+$ sudo npm install -g @razor-network/merkle
 $ merkle a
 86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8
 ```
@@ -219,10 +199,10 @@ Options:
   -l, --level  Prints values of the given level. Defaults to 0 (root).
   -n, --nodes  Prints the number of nodes for the given leaves.
   -c, --count  Prints the number of levels for the given leaves.
-  -h, --hash   Hash algorithm to apply on leaves. Values are 'sha1', 'md5' or 'none'.
+  -h, --hash   Hash algorithm to apply on leaves. Values are 'keccak256'.
   -a, --all    Prints all levels of Merkle tree, from leaves to root.
   --level                                                                              [default: 0]
-  --hash                                                                               [default: "sha1"]
+  --hash                                                                               [default: "keccak256"]
 ```
 
 ## Concepts
