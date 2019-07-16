@@ -1,7 +1,7 @@
 {
-  "name": "merkle",
+  "name": "@razor-network/merkle",
   "version": "0.6.0",
-  "description": "Javascript implementation of merkle trees",
+  "description": "Javascript implementation of merkle trees, compatible with solidity",
   "main": "merkle.js",
   "directories": {
     "test": "test"
@@ -12,17 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:c-geek/merkle.git"
+    "url": "git+ssh://git@github.com/razor-network/merkle.git"
   },
   "keywords": [
     "hash trees",
     "cryptography"
   ],
-  "author": "Cedric Moreau <cem.moreau@gmail.com>",
+  "author": "Hrishikesh H <hrishikesh@razor.network>",
   "license": "MIT",
-  "readmeFilename": "readme.md",
   "bugs": {
-    "url": "https://github.com/c-geek/merkle/issues"
+    "url": "https://github.com/razor-network/merkle/issues"
   },
   "dependencies": {
     "ethereumjs-util": "^5.1.2",
@@ -41,5 +40,6 @@
   },
   "bin": {
     "merkle": "./bin/merkle"
-  }
+  },
+  "homepage": "https://github.com/razor-network/merkle#readme"
 }
